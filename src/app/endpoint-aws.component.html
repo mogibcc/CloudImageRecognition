@@ -1,0 +1,17 @@
+<h2>Amazon Rekognition Results</h2>
+
+<h3>Labels</h3>
+<ul>
+  <li *ngFor="let label of data[0].Labels" fxLayout="row" fxLayoutAlign="start center">
+    <span>{{ label.Name }}</span>
+    <mat-progress-spinner [value]="label.Confidence" [diameter]="24"></mat-progress-spinner>
+  </li>
+</ul>
+
+<h3>Moderation Labels</h3>
+<ul>
+  <li *ngFor="let moderationLabel of data[1].ModerationLabels" fxLayout="row" fxLayoutAlign="start center">
+    <span>{{ moderationLabel.Name }}</span>
+    <mat-progress-spinner [value]="moderationLabel.Confidence" [diameter]="24"></mat-progress-spinner>
+  </li>
+</ul>

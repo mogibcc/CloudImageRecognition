@@ -1,0 +1,30 @@
+<h2>Azure Computer Vision Results</h2>
+
+<h3>Description</h3>
+<p *ngFor="let caption of data.description.captions" fxLayout="row" fxLayoutAlign="start center">
+  <span>{{ caption.text }}</span>
+  <mat-progress-spinner [value]="toProgressValue(caption.confidence)" [diameter]="24"></mat-progress-spinner>
+</p>
+<p><b>All Tags:</b> {{ data.description.tags.join(', ') }}</p>
+
+<h3>Main Tags</h3>
+<ul>
+  <li *ngFor="let tag of data.tags" fxLayout="row" fxLayoutAlign="start center">
+    <span>{{ tag.name }}</span>
+    <mat-progress-spinner [value]="toProgressValue(tag.confidence)" [diameter]="24"></mat-progress-spinner>
+  </li>
+</ul>
+
+<h3>Adult Content</h3>
+<p fxLayout="row" fxLayoutAlign="start center">
+  <span>Is adult content: {{ data.adult.isAdultContent ? '✓' : '✗' }}</span>
+  <mat-progress-spinner [value]="toProgressValue(data.adult.adultScore)" [diameter]="24"></mat-progress-spinner>
+</p>
+<p fxLayout="row" fxLayoutAlign="start center">
+  <span>Is racy content: {{ data.adult.isRacyContent ? '✓' : '✗' }}</span>
+  <mat-progress-spinner [value]="toProgressValue(data.adult.racyScore)" [diameter]="24"></mat-progress-spinner>
+</p>
+
+<h2>Colors</h2>
+<p><b>Dominant foreground:</b> {{data.color.dominantColorForeground}}</p>
+<p><b>Dominant background:</b> {{data.color.dominantColorBackground}}</p>

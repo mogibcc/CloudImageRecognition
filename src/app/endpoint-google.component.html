@@ -1,0 +1,37 @@
+<h2>Google Vision Results</h2>
+
+<h3>Labels</h3>
+<ul>
+  <li *ngFor="let label of response?.labelAnnotations" fxLayout="row" fxLayoutAlign="start center">
+    <span>{{ label.description }}</span>
+    <mat-progress-spinner [value]="toProgressValue(label.score)" [diameter]="24"></mat-progress-spinner>
+  </li>
+</ul>
+
+<h3>Safe Search</h3>
+<div *ngIf="response?.safeSearchAnnotation as safeSearch">
+  <p fxLayout="row" fxLayoutAlign="start center">
+    Is adult content:&nbsp;<b>{{ toReadableString(safeSearch.adult) }}</b>
+  </p>
+  <p fxLayout="row" fxLayoutAlign="start center">
+    Is spoof content:&nbsp;<b>{{ toReadableString(safeSearch.spoof) }}</b>
+  </p>
+  <p fxLayout="row" fxLayoutAlign="start center">
+    Is medical content:&nbsp;<b>{{ toReadableString(safeSearch.medical) }}</b>
+  </p>
+  <p fxLayout="row" fxLayoutAlign="start center">
+    Is violent content:&nbsp;<b>{{ toReadableString(safeSearch.violence) }}</b>
+  </p>
+</div>
+
+<h3>Image Colors</h3>
+<p *ngFor="let color of response?.imagePropertiesAnnotation?.dominantColors?.colors" fxLayout="row" fxLayoutAlign="start center">
+  <span [style.color]="'rgba(' + color.color.red + ',' + color.color.green + ',' + color.color.blue + ',' + (color.color.alpha || 1) + ')'">⬤</span>
+  <span>{{ (color.pixelFraction * 100).toFixed(2) }}% of the image</span>
+  <mat-progress-spinner [value]="toProgressValue(color.score)" [diameter]="24"></mat-progress-spinner>
+</p>
+
+<h3>Recognized Text</h3>
+<pre *ngIf="recognizedText">
+  <code>{{ recognizedText }}</code>
+</pre>

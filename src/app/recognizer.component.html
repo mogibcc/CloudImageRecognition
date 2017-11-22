@@ -1,0 +1,54 @@
+<mat-card>
+    <mat-card-title>Image Recognizer</mat-card-title>
+  
+    <mat-card-content>
+      <form>
+        <mat-form-field>
+          <mat-select [(ngModel)]="provider" name="provider" placeholder="Provider">
+            <mat-option *ngFor="let provider of providers" [value]="provider.key">
+              {{ provider.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" [(ngModel)]="imageUrl" name="imageUrl" placeholder="Image Url" />
+          <mat-hint>Paste the URL of the image to recognize here.</mat-hint>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="azureResponse">
+      <app-endpoint-azure [data]="azureResponse"></app-endpoint-azure>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="awsResponse">
+      <app-endpoint-aws [data]="awsResponse"></app-endpoint-aws>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="googleResponse">
+      <app-endpoint-google [data]="googleResponse"></app-endpoint-google>
+    </mat-card-content>
+  
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        type="button"
+        (click)="performRecognition()"
+        color="primary"
+        [disabled]="recognitionActive"
+      >
+        <mat-icon>search</mat-icon> 
+        PERFORM RECOGNITION
+      </button>
+      <button
+        mat-button
+        type="button"
+        (click)="openSettingsDialog()"
+      >
+        <mat-icon>settings</mat-icon>
+        SETTINGS
+      </button>
+    </mat-card-actions>
+  
+    <img mat-card-image [src]="imageUrl" />
+  </mat-card>

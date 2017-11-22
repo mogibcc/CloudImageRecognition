@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Image Recognizer</h2>
+
+<mat-dialog-content>
+  <p *ngFor="let paragraph of messageParagraphs" style="white-space: pre-line;">
+    {{ paragraph }}
+  </p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+    CLOSE
+  </button>
+</mat-dialog-actions>

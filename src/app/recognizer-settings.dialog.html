@@ -1,0 +1,82 @@
+<h2 mat-dialog-title>Settings</h2>
+
+<mat-dialog-content>
+  <form #settingsForm="ngForm">
+    <mat-tab-group>
+
+      <mat-tab label="Azure Computer Vision">
+        <p>Check out the <a href="https://azure.microsoft.com/en-us/try/cognitive-services/">the Azure documentation</a> for the setup process.</p>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="settings.azureEndpoint"
+            name="azureEndpoint"
+            placeholder="Azure Computer Vision Endpoint"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            [(ngModel)]="settings.azureKey"
+            name="azureKey"
+            placeholder="Azure Computer Vision Key"
+          />
+        </mat-form-field>
+      </mat-tab>
+
+      <mat-tab label="Amazon Rekognition">
+        <p>Check out <a href="http://docs.aws.amazon.com/rekognition/latest/dg/setting-up.html">the AWS documentation</a> for the setup process.</p>
+        <mat-form-field>
+          <input
+            matInput
+            type="text"
+            [(ngModel)]="settings.awsRegion"
+            name="awsRegion"
+            placeholder="Amazon Rekognition Region"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            [(ngModel)]="settings.awsAccessKeyId"
+            name="awsAccessKeyId"
+            placeholder="Amazon Rekognition Access Key Id"
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            [(ngModel)]="settings.awsSecretAccessKey"
+            name="awsSecretAccessKey"
+            placeholder="Amazon Rekognition Secret Access Key"
+          />
+        </mat-form-field>
+      </mat-tab>
+
+      <mat-tab label="Google Vision">
+        <p>Check out <a href="https://cloud.google.com/vision/docs/before-you-begin">the Google documentation</a> for the setup process.</p>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            [(ngModel)]="settings.googleKey"
+            name="googleKey"
+            placeholder="Google Vision API Key"
+          />
+        </mat-form-field>
+      </mat-tab>
+
+    </mat-tab-group>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>
+    <mat-icon>done</mat-icon>
+    SAVE
+  </button>
+</mat-dialog-actions>
